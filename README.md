@@ -1,4 +1,7 @@
-<h1>LETO - Sistema de Otimização do Fluxo de Pacientes e Gestão de Leitos</h1>
+<div align="center">
+  <h1>LETO</h1>
+  <h2>Sistema de Otimização do Fluxo de Pacientes e Gestão de Leitos</h2>
+</div>
 <p align="justify">O LETO é uma plataforma integrada, composta por uma aplicação móvel e um painel de controle (dashboard) web, projetada para gerenciar e otimizar a logística do fluxo de pacientes em ambientes hospitalares. O foco arquitetônico da solução é a mitigação do gargalo operacional referente ao tempo de giro do leito — o intervalo quantitativo entre a alta médica e a liberação sistêmica e física do acomodamento para uma nova internação. Através da automação de fluxos de trabalho e monitoramento em tempo real , o sistema orquestra as etapas de alta, transporte de pacientes e higienização de leitos. O objetivo estabelecido é uma redução de até 40% no tempo de ociosidade dos leitos, maximizando a eficiência da capacidade instalada e aprimorando a experiência do paciente.</p>
 
 <hr>
