@@ -23,16 +23,27 @@
 
 <pre>
 leto-hospital-management/
+├── scripts/                    # Automações de ambiente e setup
+│   ├── setup_env.sh            # Script para instalação de Node, Yarn/npm, etc.
+│   ├── init_db.sql             # Script SQL para criar as tabelas iniciais do banco
+│   └── start_all.sh            # Script para rodar backend, web e mobile de uma vez
 ├── mobile/                     # Código-fonte da aplicação React Native
-│    ├── src/
-│    └── package.json
+│   ├── src/
+│   ├── .env.example            # Variáveis de ambiente de exemplo (ex: URL da API)
+│   ├── .gitignore              # Ignora o .env real e pastas como node_modules
+│   └── package.json
 ├── web/                        # Código-fonte do Dashboard em React
 │   ├── src/
+│   ├── .env.example
+│   ├── .gitignore
 │   └── package.json
 ├── backend/                    # API RESTful em Node.js
 │   ├── src/
+│   ├── .env.example            # Exemplo de credenciais (DB, Firebase, JWT)
+│   ├── .gitignore
 │   └── package.json
-└── README.md
+├── .gitignore                  # Regras globais de exclusão do repositório
+└── README.md                   # Documentação principal
 </pre>
 <p align="justify">A arquitetura do projeto foi segmentada em três módulos principais para isolar responsabilidades, facilitar a manutenção e permitir o escalonamento independente dos serviços acoplados.</p>
 
