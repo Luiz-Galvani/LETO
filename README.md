@@ -50,8 +50,16 @@ leto-hospital-management/
 </pre>
 <p align="justify">A arquitetura do projeto foi segmentada em três módulos principais para isolar responsabilidades, facilitar a manutenção e permitir o escalonamento independente dos serviços acoplados.</p>
 
-<hr>
 <h2>Principais Funcionalidades e Fluxo de Negócio</h2>
+<hr>
+<h2>Arquitetura de Módulos</h2>
+
+<p align="justify">Para garantir a resiliência operacional e a fluidez na comunicação, o sistema LETO é dividido em dois módulos principais de interface, permitindo o acesso tanto por dispositivos móveis quanto por terminais fixos:</p>
+
+<ul>
+  <li><strong>Módulo Operacional (Web & Mobile):</strong> Interface simplificada e de alta performance voltada para as equipes de transporte e higienização. Permite o recebimento de ordens de serviço, cronometragem de tarefas e validação de conclusão de etapas via QR Code.</li>
+  <li><strong>Módulo de Gestão (Web):</strong> Painel administrativo centralizado para o corpo diretivo e chefias de enfermagem. Oferece visão em tempo real do mapa de leitos, monitorização de KPIs (tempos de giro) e gestão de escalas operacionais.</li>
+</ul>
 
 <h3 id="fluxo-alta">Orquestração do Fluxo de Alta</h3>
 
