@@ -1,6 +1,4 @@
-// definição de uma classe
-
-class leito {
+class bedsEntity {
     constructor(id, bedscol, bedscode, status){
         this.id = id;
         this.bedscol = bedscol;
@@ -9,7 +7,4 @@ class leito {
     }
 }
 
-// para executar navegar nas pastas
-// cd leto-api/backend
-// npm run dev
-// colocar no Readme
+module.exports = bedsEntity
