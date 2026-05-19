@@ -1,4 +1,4 @@
-﻿export default class Users {
+﻿export default class user {
     constructor(id, cpf, email, phone, password, first_name, last_name, birthday, gender) {
         this.id = id
         this.cpf = cpf

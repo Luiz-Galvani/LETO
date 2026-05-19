@@ -55,7 +55,7 @@ router.delete('/:id', async (req, res) => {
         const result = await service.removeStaff(id)
         res.status(200).send(result)
     } catch(error){
-        res.status(500).json({ error: message.error })
+        res.status(500).json({ error: error.message })
     }
 })
 
