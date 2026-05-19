@@ -1,4 +1,4 @@
-class bedsDto {
+export default class bedsDto {
     constructor(id, bedscol, bedscode, status){
         this.id = id;
         this.bedscol = bedscol;
@@ -6,5 +6,3 @@ class bedsDto {
         this.status = status;
     }
 }
-
-module.exports = bedsDto
