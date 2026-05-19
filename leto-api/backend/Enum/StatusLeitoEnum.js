@@ -1,4 +1,4 @@
-const StatusLeitoEnum = Object.freeze({
+export const StatusLeitoEnum = Object.freeze({
     Livre: "Livre",
     Ocupado: "Ocupado",
     Manuntencao: "Manutencao",
