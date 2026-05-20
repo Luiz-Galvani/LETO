@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import staffController from './staff/staff.controller.js'
-import userController from './user/user.controller.js'
+import staffController from './src/app/staff/staff.controller.js'
+import userController from './src/app/user/user.controller.js'
 import { neon } from '@neondatabase/serverless'
 
 

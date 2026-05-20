@@ -81,7 +81,7 @@ export class UserRepository {
         } = userData
 
         const result = await this.sql
-        ` UPDATE user
+        ` UPDATE users
             SET
                 cpf = ${cpf},
                 email = ${email},
@@ -103,7 +103,7 @@ export class UserRepository {
 
         const result = await this.sql
         `
-            DELETE FROM user
+            DELETE FROM users
             WHERE id = ${id}
             RETURNING *
 
