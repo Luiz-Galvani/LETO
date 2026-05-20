@@ -1,6 +1,6 @@
 import express from 'express'
 import { StaffService } from './staff.service.js'
-import { StaffRepository } from '../repositories/staff.repository.js'
+import { StaffRepository } from '../../repositories/staff.repository.js'
 import { neon } from '@neondatabase/serverless'
 
 const router = express.Router()
