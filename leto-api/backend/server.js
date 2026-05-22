@@ -1,7 +1,8 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import staffController from './staff/staff.controller.js'
-import taskController from './tasks/task.controller.js'
+import staffController from './src/app/staff/staff.controller.js'
+import taskController from './src/app/task/task.controller.js'
+import userController from './src/app/user/user.controller.js'
 import { neon } from '@neondatabase/serverless'
 
 
@@ -13,9 +14,10 @@ app.use(express.json())
 // const sql = neon(process.env.DATABASE_URL)
 
 app.get('/', (req, res) => {
-    res.status(200).send('Hello World')
+    res.status(200).send('Servidor rodando!')
 })
 
+app.use('/user', userController)
 app.use('/staff', staffController)
 app.use('/tasks', taskController)
 
