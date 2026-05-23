@@ -53,7 +53,25 @@ router.get("/:id", async (req, res) => {
 
 //Metodo Criar leito
 router.post("/", async (req, res) => {
-    
+    const id = parseInt(req.params.id);
+
+    const {
+            bedscol,
+            units_id,
+            patients_id,
+            rooms_id,
+            beds_code,
+            bed_status
+        } = req.body;
+
+        const result = await service.updateBed(id, {
+            bedscol,
+            units_id,
+            patients_id,
+            rooms_id,
+            beds_code,
+            bed_status
+        });
 });
 
 //Atualizar Leito
