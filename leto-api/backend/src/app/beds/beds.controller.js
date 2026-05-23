@@ -50,3 +50,20 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+
+//Metodo Criar leito
+router.post("/", async (req, res) => {
+    
+});
+
+//Atualizar Leito
+router.put("/:id", (req, res) => {
+
+});
+
+//Deletar Leito
+router.delete("/:id", (req, res) => {
+
+});
+
+export default router;
