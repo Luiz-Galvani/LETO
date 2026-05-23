@@ -84,7 +84,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-
 //Atualizar Leito
 router.put("/:id", (req, res) => {
 
@@ -92,7 +91,20 @@ router.put("/:id", (req, res) => {
 
 //Deletar Leito
 router.delete("/:id", (req, res) => {
+    try {
 
+        const id = parseInt(req.params.id);
+
+        const result = await service.removeBed(id);
+
+        res.status(200).send(result);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+    }
 });
 
 export default router;
