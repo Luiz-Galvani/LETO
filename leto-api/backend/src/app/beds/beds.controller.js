@@ -86,7 +86,36 @@ router.post("/", async (req, res) => {
 
 //Atualizar Leito
 router.put("/:id", (req, res) => {
+    try {
 
+        const id = parseInt(req.params.id);
+
+        const {
+            bedscol,
+            units_id,
+            patients_id,
+            rooms_id,
+            beds_code,
+            bed_status
+        } = req.body;
+
+        const result = await service.updateBed(id, {
+            bedscol,
+            units_id,
+            patients_id,
+            rooms_id,
+            beds_code,
+            bed_status
+        });
+
+        res.status(200).send(result);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+    }
 });
 
 //Deletar Leito
