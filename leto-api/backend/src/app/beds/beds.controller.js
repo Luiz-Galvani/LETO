@@ -31,3 +31,22 @@ router.get("/", async (req, res) => {
     }
 });
 
+// Buscar leito por id
+router.get("/:id", async (req, res) => {
+    try {
+
+        const id = parseInt(req.params.id);
+
+        const result = await service.findBedById(id);
+
+        res.status(200).send(result);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+});
+
