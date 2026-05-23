@@ -53,9 +53,9 @@ router.get("/:id", async (req, res) => {
 
 //Metodo Criar leito
 router.post("/", async (req, res) => {
-    const id = parseInt(req.params.id);
+    try {
 
-    const {
+        const {
             bedscol,
             units_id,
             patients_id,
@@ -64,7 +64,7 @@ router.post("/", async (req, res) => {
             bed_status
         } = req.body;
 
-        const result = await service.updateBed(id, {
+        const result = await service.createBed({
             bedscol,
             units_id,
             patients_id,
@@ -72,7 +72,18 @@ router.post("/", async (req, res) => {
             beds_code,
             bed_status
         });
+
+        res.status(201).send(result);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
 });
+
 
 //Atualizar Leito
 router.put("/:id", (req, res) => {
