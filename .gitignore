@@ -1,1 +1,4 @@
-LETO/
+node_modules/
+.env
+
+# Node and environment

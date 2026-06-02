@@ -5,7 +5,7 @@ import { neon } from '@neondatabase/serverless'
 
 const router = express.Router()
 
-const sql = neon(process.env.DATABASE_URL)
+const sql = neon(process.env.DB_HOST)
 const repository = new StaffRepository(sql)
 const service = new StaffService(repository)
 
