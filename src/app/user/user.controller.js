@@ -1,12 +1,12 @@
 ﻿import express from 'express'
 import { neon } from '@neondatabase/serverless'
 import { UserService } from './user.service.js'
-import { UserRepository } from '../repositories/user.repository.js'
+import { UserRepository } from '../../repositories/user.repository.js'
 
 const router = express.Router()
 
 // conexão com o banco de dados
-const sql = neon(process.env.DATABASE_URL)
+const sql = neon(process.env.DB_HOST)
 const repository = new UserRepository(sql)
 const service = new UserService(repository)
 
