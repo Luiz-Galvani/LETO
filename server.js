@@ -1,12 +1,9 @@
-import dotenv from 'dotenv'
+import 'dotenv/config'
 import express from 'express'
 import staffController from './src/app/staff/staff.controller.js'
 import taskController from './src/app/task/task.controller.js'
 import userController from './src/app/user/user.controller.js'
 import { neon } from '@neondatabase/serverless'
-
-
-dotenv.config()
 
 const app = express()
 app.use(express.json())
