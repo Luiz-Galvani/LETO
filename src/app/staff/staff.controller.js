@@ -1,11 +1,11 @@
 import express from 'express'
 import { StaffService } from './staff.service.js'
-import { StaffRepository } from '../repositories/staff.repository.js'
+import { StaffRepository } from '../../repositories/staff.repository.js'
 import { neon } from '@neondatabase/serverless'
 
 const router = express.Router()
 
-const sql = neon(process.env.DATABASE_URL)
+const sql = neon(process.env.DB_HOST)
 const repository = new StaffRepository(sql)
 const service = new StaffService(repository)
 
@@ -55,7 +55,7 @@ router.delete('/:id', async (req, res) => {
         const result = await service.removeStaff(id)
         res.status(200).send(result)
     } catch(error){
-        res.status(500).json({ error: message.error })
+        res.status(500).json({ error: error.message })
     }
 })
 
