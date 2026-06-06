@@ -1,13 +1,10 @@
 import express from 'express'
 import { neon } from '@neondatabase/serverless'
-import dotenv from 'dotenv'
 import { TasksService } from './task.service.js'
-import { TasksRepository } from '../repositories/task.repository.js'
-
-dotenv.config()
+import { TasksRepository } from '../../repositories/task.repository.js'
 
 const router = express.Router()
-const sql = neon(process.env.DATABASE_URL)
+const sql = neon(process.env.DB_HOST)
 const repository = new TasksRepository(sql)
 const service = new TasksService(repository)
 //----------------GET----------------
@@ -18,7 +15,8 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({error: error.message})
     }
-})//----------------GET com ID----------------
+})
+//----------------GET com ID----------------
 
 router.get('/:id', async (req, res) => {
     try {
