@@ -1,5 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import staffController from './staff/staff.controller.js'
+import taskController from './tasks/task.controller.js'
 import staffController from './src/app/staff/staff.controller.js'
 import userController from './src/app/user/user.controller.js'
 import { neon } from '@neondatabase/serverless'
@@ -18,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.use('/user', userController)
 app.use('/staff', staffController)
+app.use('/tasks', taskController)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}`)
