@@ -34,32 +34,21 @@ export class BedsService {
     async createBed(bedData) {
 
         const {
-            bedscol,
+            bed_code,
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
             bed_status
         } = bedData
 
         // Validações simples
         if (
-            typeof bedscol !== 'string' ||
-            bedscol.trim().length === 0
+            typeof bed_code !== 'string' ||
+            bed_code.trim().length === 0
         ) {
 
             throw new Error(
-                'Campo "bedscol" é obrigatório.'
-            )
-        }
-
-        if (
-            typeof beds_code !== 'string' ||
-            beds_code.trim().length === 0
-        ) {
-
-            throw new Error(
-                'Campo "beds_code" é obrigatório.'
+                'Campo "bed_code" é obrigatório.'
             )
         }
 

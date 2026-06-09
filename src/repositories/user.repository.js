@@ -21,8 +21,7 @@ export class UserRepository {
             gender
         } = userData
 
-        const result = await this.sql
-        ` 
+        const result = await this.sql`
             INSERT INTO users (
                 cpf,
                 email,
@@ -52,15 +51,13 @@ export class UserRepository {
 
     // Get USERS
     async find() {
-        return await this.sql
-        `SELECT * FROM users`
+        return await this.sql`SELECT * FROM users`
     }
 
     // Get USER por ID
     async findOne(id) {
 
-        const result = await this.sql
-        ` SELECT * FROM users
+        const result = await this.sql`SELECT * FROM users
           WHERE id = ${id}`
 
         return result[0]
@@ -80,8 +77,8 @@ export class UserRepository {
             gender
         } = userData
 
-        const result = await this.sql
-        ` UPDATE users
+        const result = await this.sql`
+            UPDATE users
             SET
                 cpf = ${cpf},
                 email = ${email},
@@ -101,8 +98,7 @@ export class UserRepository {
     // Delete USER
     async remove(id) {
 
-        const result = await this.sql
-        `
+        const result = await this.sql`
             DELETE FROM users
             WHERE id = ${id}
             RETURNING *

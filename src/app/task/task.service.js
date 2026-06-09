@@ -15,10 +15,10 @@ export class TasksService {
         return task;
     }
 
-    async createTask(roomsId, bedsId, unitsId, usersId, statusId) {
-        this._validateIds(roomsId, bedsId, unitsId, usersId, statusId)
+    async createTask(roomsId, bedsId, unitsId, usersId, statusId, description = null) {
+        this._validateIds(roomsId, bedsId, unitsId, usersId, statusId, description)
 
-        return await this.repository.create(roomsId, bedsId, unitsId, usersId, statusId)
+        return await this.repository.create(roomsId, bedsId, unitsId, usersId, statusId, description)
     }
 
     async findTasks() {
@@ -38,12 +38,12 @@ export class TasksService {
         return await this.repository.remove(id)
     }
 
-    async updateTask(id, roomsId, bedsId, unitsId, usersId, statusId, acceptedAt = null, completedAt = null) {
+    async updateTask(id, roomsId, bedsId, unitsId, usersId, statusId, description = null, acceptedAt = null, completedAt = null) {
         if (typeof id !== 'number' || !Number.isInteger(id)) {
             throw new Error('O id fornecido deve ser um número inteiro válido')
         }
 
-        this._validateIds(roomsId, bedsId, unitsId, usersId, statusId)
+        this._validateIds(roomsId, bedsId, unitsId, usersId, statusId, description)
 
         if (acceptedAt !== null && !(acceptedAt instanceof Date) && typeof acceptedAt !== 'string') {
             throw new Error('Campo "acceptedAt" deve ser uma data válida ou null')
@@ -59,16 +59,21 @@ export class TasksService {
             throw new Error('Task não encontrado.')
         }
 
-        return await this.repository.update(id, roomsId, bedsId, unitsId, usersId, statusId, acceptedAt, completedAt)
+        return await this.repository.update(id, roomsId, bedsId, unitsId, usersId, statusId, description, acceptedAt, completedAt)
     }
 
     _validateIds(roomsId, bedsId, unitsId, usersId, statusId) {
-        const ids = { roomsId, bedsId, unitsId, usersId, statusId };
+        const ids = { roomsId, bedsId, unitsId, usersId, statusId};
 
         for (const [key, value] of Object.entries(ids)) {
             if (typeof value !== 'number' || !Number.isInteger(value)) {
                 throw new Error(`Campo "${key}" deve ser um número inteiro válido`)
             }
+        }
+    }
+    _validateDescription(description) {
+        if (description !== null && typeof description !== 'string') {
+            throw new Error('Campo "description" deve ser um texto válido ou null')
         }
     }
 }
