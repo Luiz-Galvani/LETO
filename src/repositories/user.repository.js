@@ -12,18 +12,32 @@ export class UserRepository {
     async create(userData) {
         const { id, name, email, senha } = userData
 
-        const result = await this.sql`
-            INSERT INTO "user" (
-                id,
-                name,
-                email,
-                senha
-            ) VALUES (
-                ${id},
-                ${name},
-                ${email},
-                ${senha}
-            ) RETURNING *`
+        let result
+        if (id !== null && id !== undefined) {
+            result = await this.sql`
+                INSERT INTO "user" (
+                    id,
+                    name,
+                    email,
+                    senha
+                ) VALUES (
+                    ${id},
+                    ${name},
+                    ${email},
+                    ${senha}
+                ) RETURNING *`
+        } else {
+            result = await this.sql`
+                INSERT INTO "user" (
+                    name,
+                    email,
+                    senha
+                ) VALUES (
+                    ${name},
+                    ${email},
+                    ${senha}
+                ) RETURNING *`
+        }
 
         return result[0]
     }
