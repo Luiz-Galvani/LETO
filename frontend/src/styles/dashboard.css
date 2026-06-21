@@ -1,0 +1,561 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: #f1f5f9; /* Alinhado ao plano cinza limpo do login */
+  -webkit-font-smoothing: antialiased;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== CONFIGURAÇÕES GERAIS DE SVGS ===== */
+svg {
+  flex-shrink: 0;
+}
+
+/* Ícones dos Menus */
+.menu-svg {
+  width: 18px;
+  height: 18px;
+  color: inherit; /* Segue a cor cinza ou azul ativa do texto automaticamente */
+}
+
+/* Ícones do Topo (Busca, Notificação, Logout) */
+.search-svg {
+  position: absolute;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: #94a3b8;
+}
+
+.top-svg {
+  width: 20px;
+  height: 20px;
+  color: #64748b;
+}
+
+.logout-inline-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #94a3b8;
+  transition: color 0.15s;
+}
+.logout-inline-btn:hover svg {
+  color: #dc2626;
+}
+
+/* BARRA SUPERIOR INTEGRADA */
+.main-header {
+  background: #ffffff;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.dashboard-logo {
+  width: 100px;
+  height: auto;
+}
+
+.hospital-name {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1.1rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-clock-mini {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 10px 16px 10px 40px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  width: 240px;
+  background: #f8fafc;
+  font-size: 0.85rem;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.search-box input:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+}
+
+.notification-btn {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #e2e8f0;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.logout-inline-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* MENUS HORIZONTAIS DE NAVEGAÇÃO */
+.top-navigation {
+  background: #ffffff;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 16px 20px;
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+  color: #0f172a;
+}
+
+.nav-link.active {
+  color: #2563eb;
+  font-weight: 600;
+  border-bottom-color: #2563eb;
+}
+
+.nav-link.active .menu-svg {
+  color: #2563eb;
+}
+
+.nav-count {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+.nav-count.alert {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.nav-link-settings {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* CONTEÚDO CONTAINER */
+.dashboard-content {
+  padding: 40px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* BOAS-VINDAS / BANNER */
+.welcome-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+
+.current-date {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.welcome-text h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin-top: 4px;
+}
+
+.welcome-sub {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.big-digital-clock {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.01em;
+}
+
+/* GRID DE MÉTRICAS */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.metric-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.02), 0 10px 15px -3px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinha o texto e o bloco do ícone no centro vertical */
+}
+
+.card-info span {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.card-info h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Caixas de ícones coloridas nos Cards Superiores */
+.metric-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.metric-icon-box svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Paleta de cores premium para os cards */
+.m-green { background: #f0fdf4; color: #16a34a; }
+.m-blue { background: #eff6ff; color: #2563eb; }
+.m-purple { background: #faf5ff; color: #a855f7; }
+.m-orange { background: #fff7ed; color: #ea580c; }
+
+/* LAYOUT CENTRAL DUAS COLUNAS */
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.panel-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.01), 0 20px 25px -5px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.02);
+}
+
+.panel-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.panel-card-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.subtitle-tag {
+  font-size: 0.8rem;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* MAPA DE QUARTOS (REESTILIZADO COM MINI ÍCONES SVGS) */
+.rooms-pill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 12px;
+}
+
+.room-pill {
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  gap: 4px;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+.room-pill:hover {
+  transform: translateY(-2px);
+}
+
+.room-pill .svg-icon {
+  width: 14px;
+  height: 14px;
+  color: inherit; /* Adota a cor definida para o texto da pílula */
+}
+
+/* Badges em tons pastel médicos de alta elegância */
+.q-blue { background: #eff6ff; color: #1d4ed8; }
+.q-green { background: #f0fdf4; color: #15803d; }
+.q-orange { background: #fff7ed; color: #c2410c; }
+.q-red { background: #fef2f2; color: #b91c1c; }
+
+/* LINHA DO TEMPO DE ATIVIDADES */
+.activity-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 16px;
+}
+
+.timeline-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.timeline-icon svg {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+.timeline-icon.act-green { background: #e8f5e9; color: #16a34a; }
+.timeline-icon.act-purple { background: #f3e5f5; color: #a855f7; }
+.timeline-icon.act-red { background: #ffebee; color: #dc2626; }
+.timeline-icon.act-orange { background: #fff3e0; color: #ea580c; }
+
+.timeline-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timeline-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-meta h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.timeline-meta .time {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.timeline-body p {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ===== SEÇÃO EQUIPES ATIVAS CORRIGIDA (3 COLUNAS EM LINHA) ===== */
+.teams-section-panel h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+.teams-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Força a distribuição em 3 colunas exatas */
+  gap: 20px;
+  width: 100%;
+}
+
+.team-row-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.01), 0 10px 15px -3px rgba(15, 23, 42, 0.04);
+  position: relative;
+  overflow: hidden;
+  min-width: 0; /* Previne que o conteúdo interno force o card a expandir além do grid */
+}
+
+.team-main-details {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.color-strip {
+  width: 4px;
+  height: 36px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.color-strip.orange { background: #ea580c; }
+.color-strip.purple { background: #a855f7; }
+.color-strip.green { background: #16a34a; }
+
+.team-main-details h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Abrevia textos longos com "..." se faltar espaço */
+}
+
+.team-main-details p {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.team-numeric-stat {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.team-numeric-stat .num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.team-numeric-stat .lbl {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+} /* Responsivo para telas menores */
+@media (max-width: 1024px) {
+  .teams-grid-container {
+    grid-template-columns: 1fr; /* Transforma em bloco único vertical em telas pequenas */
+  }
+}

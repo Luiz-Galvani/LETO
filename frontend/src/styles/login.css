@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  /* Fundo confortável para os olhos e sem nenhuma linha de quadrado */
+  background: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Base unificada: Limpa e com um ponto de luz suave ao fundo para dar profundidade */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  /* Cria uma iluminação radial bem leve no centro da tela para quebrar o cinza plano */
+  background-image: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+  padding: 0 10%;
+  overflow-x: hidden;
+}
+
+/* ===== LADO ESQUERDO (Conteúdo de marca) ===== */
+
+.left-panel {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding-right: 60px;
+}
+
+.logo {
+  margin-bottom: 40px;
+}
+
+.logo img {
+  display: block;
+  width: 130px;
+  height: auto;
+  object-fit: contain;
+}
+
+.left-panel h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0f172a;
+  max-width: 520px;
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.left-panel p {
+  max-width: 460px;
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ===== LADO DIREITO (Card Flutuante Assimétrico) ===== */
+
+.right-panel {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff; /* O card branco se destaca perfeitamente no fundo cinza limpo */
+  padding: 44px 36px;
+  border-radius: 24px;
+  /* Sombra sofisticada para dar efeito de flutuação real sobre o fundo */
+  box-shadow: 
+    0 4px 6px -1px rgba(15, 23, 42, 0.02), 
+    0 20px 40px -4px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+.login-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eff6ff;
+}
+
+.login-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: #0f172a;
+  outline: none;
+  background-color: #f8fafc;
+  transition: all 0.15s ease-in-out;
+}
+
+.login-form input::placeholder {
+  color: #94a3b8;
+}
+
+.login-form input:focus {
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.login-form button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  margin-top: 4px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.login-form button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.login-form button:active {
+  transform: scale(0.98);
+}
+
+.success {
+  margin-top: 16px;
+  text-align: center;
+  color: #16a34a;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.error {
+  margin-top: 16px;
+  text-align: center;
+  color: #dc2626;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ===== CONFIGURAÇÕES DE ANIMAÇÃO (FADE-IN) ===== */
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.25s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVO ===== */
+
+@media (max-width: 1100px) {
+  .login-page {
+    padding: 0 4%;
+  }
+  .left-panel h1 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: none; /* Remove o ponto de luz no mobile para otimizar */
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+  }
+
+  .left-panel {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+
+  .left-panel h1 {
+    font-size: 2rem;
+  }
+
+  .logo {
+    margin-bottom: 24px;
+  }
+
+  .login-card {
+    max-width: 100%;
+  }
+}
