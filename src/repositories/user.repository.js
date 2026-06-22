@@ -6,89 +6,69 @@ dotenv.config()
 export class UserRepository {
     constructor(sqlConnection) {
         this.sql = sqlConnection
-    }//funções de acesso ao banco de dados
+    }
 
     // Create USER
     async create(userData) {
-        const {
-            cpf,
-            email,
-            phone,
-            password,
-            first_name,
-            last_name,
-            birthday,
-            gender
-        } = userData
+        const { id, name, email, senha } = userData
 
-        const result = await this.sql`
-            INSERT INTO users (
-                cpf,
-                email,
-                phone,
-                password,
-                first_name,
-                last_name,
-                birthday,
-                gender
-            )
-
-            VALUES (
-                ${cpf},
-                ${email},
-                ${phone},
-                ${password},
-                ${first_name},
-                ${last_name},
-                ${birthday},
-                ${gender}
-            )
-
-            RETURNING *`
+        let result
+        if (id !== null && id !== undefined) {
+            result = await this.sql`
+                INSERT INTO "user" (
+                    id,
+                    name,
+                    email,
+                    senha
+                ) VALUES (
+                    ${id},
+                    ${name},
+                    ${email},
+                    ${senha}
+                ) RETURNING *`
+        } else {
+            result = await this.sql`
+                INSERT INTO "user" (
+                    name,
+                    email,
+                    senha
+                ) VALUES (
+                    ${name},
+                    ${email},
+                    ${senha}
+                ) RETURNING *`
+        }
 
         return result[0]
-    } //cria um elemento na tabela users
+    }
 
     // Get USERS
     async find() {
-        return await this.sql`SELECT * FROM users`
+        return await this.sql`SELECT * FROM "user"`
     }
 
     // Get USER por ID
     async findOne(id) {
+        const result = await this.sql`SELECT * FROM "user" WHERE id = ${id}`
+        return result[0]
+    }
 
-        const result = await this.sql`SELECT * FROM users
-          WHERE id = ${id}`
-
+    async findByEmail(email) {
+        const result = await this.sql`
+            SELECT * FROM "user" WHERE email = ${email}`
         return result[0]
     }
 
     // Update USER
     async update(id, userData) {
-
-        const {
-            cpf,
-            email,
-            phone,
-            password,
-            first_name,
-            last_name,
-            birthday,
-            gender
-        } = userData
+        const { name, email, senha } = userData
 
         const result = await this.sql`
-            UPDATE users
+            UPDATE "user"
             SET
-                cpf = ${cpf},
+                name = ${name},
                 email = ${email},
-                phone = ${phone},
-                password = ${password},
-                first_name = ${first_name},
-                last_name = ${last_name},
-                birthday = ${birthday},
-                gender = ${gender}
-
+                senha = ${senha}
             WHERE id = ${id}
             RETURNING *`
 
@@ -97,14 +77,8 @@ export class UserRepository {
 
     // Delete USER
     async remove(id) {
-
         const result = await this.sql`
-            DELETE FROM users
-            WHERE id = ${id}
-            RETURNING *
-
-        `
-
+            DELETE FROM "user" WHERE id = ${id} RETURNING *`
         return result[0]
     }
 }

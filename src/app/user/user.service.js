@@ -27,45 +27,30 @@ export class UserService {
     }
 
     // Post USER
+    // Post USER
     async createUser(userData) {
-        const {
-            cpf,
-            email,
-            phone,
-            password,
-            first_name,
-            last_name,
-            birthday,
-            gender
-        } = userData
+        const { id, name, email, senha } = userData
 
-        // Validações
-        if (
-            typeof cpf !== 'string' || cpf.trim().length === 0
-        ) {
-            throw new Error(
-                'Campo "CPF" é obrigatório.'
-            )
+        if (typeof name !== 'string' || name.trim().length === 0) {
+            throw new Error('Campo "name" é obrigatório.')
         }
 
-        if (
-            typeof email !== 'string' || email.trim().length === 0
-        ) {
-            throw new Error(
-                'Campo "email" é obrigatório.'
-            )
+        if (typeof email !== 'string' || email.trim().length === 0) {
+            throw new Error('Campo "email" é obrigatório.')
         }
 
-        if (
-            typeof first_name !== 'string' || first_name.trim().length === 0
-        ) {
-
-            throw new Error(
-                'Campo "first_name" é obrigatório.'
-            )
+        if (typeof senha !== 'string' || senha.trim().length === 0) {
+            throw new Error('Campo "senha" é obrigatório.')
         }
 
-        return await this.repository.create(userData)
+        const payload = {
+            id: id ?? null,
+            name: name.trim(),
+            email: email.trim(),
+            senha
+        }
+
+        return await this.repository.create(payload)
     }
 
     // Get USERS
