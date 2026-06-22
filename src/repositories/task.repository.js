@@ -8,10 +8,10 @@ constructor(sqlConnection) {
     this.sql = sqlConnection
 }
 
-async create(roomsId, bedsId, unitsId, usersId, statusId) {
+async create(roomsId, bedsId, unitsId, usersId, statusId, description) {
     const result = await this.sql`
-    INSERT INTO tasks (rooms_id, beds_id, units_id, users_id, status_id, created_at)
-    VALUES (${roomsId}, ${bedsId}, ${unitsId}, ${usersId}, ${statusId}, NOW())
+    INSERT INTO tasks (rooms_id, beds_id, units_id, users_id, status_id, description, created_at)
+    VALUES (${roomsId}, ${bedsId}, ${unitsId}, ${usersId}, ${statusId}, ${description ?? null}, NOW())
     RETURNING *
     `;
     return result[0];
@@ -27,7 +27,7 @@ async findOne(id) {
 
 
 
-async update(id, roomsId, bedsId, unitsId, usersId, statusId, acceptedAt, completedAt) {
+async update(id, roomsId, bedsId, unitsId, usersId, statusId, description, acceptedAt, completedAt) {
     const result = await this.sql`
     UPDATE tasks
     SET rooms_id = ${roomsId},
@@ -35,6 +35,7 @@ async update(id, roomsId, bedsId, unitsId, usersId, statusId, acceptedAt, comple
     units_id = ${unitsId},
     users_id = ${usersId},
     status_id = ${statusId},
+    description = ${description},
     accepted_at = ${acceptedAt},
     completed_at = ${completedAt}
     WHERE id = ${id}

@@ -30,13 +30,14 @@ router.get('/:id', async (req, res) => {
 //---------------POST----------------
 router.post('/', async (req, res) => {
     try {
-        const {roomsId, bedsId, unitsId, usersId, statusId} = req.body
+        const {roomsId, bedsId, unitsId, usersId, statusId, description} = req.body
         const result = await service.createTask(
             parseInt(roomsId),
             parseInt(bedsId),
             parseInt(unitsId),
             parseInt(usersId),
-            parseInt(statusId)
+            parseInt(statusId),
+            description ?? null
         )
         res.status(201).send(result)
     } catch (error) {
@@ -47,7 +48,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id)
-        const {roomsId, bedsId, unitsId, usersId, statusId, acceptedAt, completedAt} = req.body
+        const {roomsId, bedsId, unitsId, usersId, statusId, description, acceptedAt, completedAt} = req.body
 
         const result = await service.updateTask(
             id,
@@ -56,6 +57,7 @@ router.put('/:id', async (req, res) => {
             parseInt(unitsId),
             parseInt(usersId),
             parseInt(statusId),
+            description ?? null,
             acceptedAt ?? null,
             completedAt ?? null
         )

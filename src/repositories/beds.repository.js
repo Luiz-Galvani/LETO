@@ -14,30 +14,27 @@ export class BedsRepository {
     async create(bedData) {
 
         const {
-            bedscol,
+            bed_code, 
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
             bed_status
         } = bedData;
 
         const result = await this.database`
             INSERT INTO beds (
-                bedscol,
+                bed_code,
                 units_id,
                 patients_id,
                 rooms_id,
-                beds_code,
                 bed_status
             )
 
             VALUES (
-                ${bedscol},
+                ${bed_code},
                 ${units_id},
                 ${patients_id},
                 ${rooms_id},
-                ${beds_code},
                 ${bed_status}
             )
 
@@ -47,7 +44,6 @@ export class BedsRepository {
         return result[0];
     }
 
-    // Buscar todos os leitos
     async find() {
 
         const result = await this.database`
@@ -57,7 +53,6 @@ export class BedsRepository {
         return result;
     }
 
-    // Buscar leito por id
     async findOne(id) {
 
         const result = await this.database`
@@ -68,26 +63,24 @@ export class BedsRepository {
         return result[0];
     }
 
-    // Atualizar leito
     async update(id, bedData) {
 
         const {
-            bedscol,
+            bed_code, 
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
             bed_status
         } = bedData;
+
 
         const result = await this.database`
             UPDATE beds
             SET
-                bedscol = ${bedscol},
+                bed_code = ${bed_code},
                 units_id = ${units_id},
                 patients_id = ${patients_id},
                 rooms_id = ${rooms_id},
-                beds_code = ${beds_code},
                 bed_status = ${bed_status}
 
             WHERE id = ${id}
@@ -98,7 +91,6 @@ export class BedsRepository {
         return result[0];
     }
 
-    // Deletar leito
     async remove(id) {
 
         const result = await this.database`

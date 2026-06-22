@@ -50,26 +50,23 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-
-//Metodo Criar leito
+// Metodo Criar leito
 router.post("/", async (req, res) => {
     try {
 
         const {
-            bedscol,
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
+            bed_code, 
             bed_status
         } = req.body;
 
         const result = await service.createBed({
-            bedscol,
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
+            bed_code,
             bed_status
         });
 
@@ -84,27 +81,25 @@ router.post("/", async (req, res) => {
     }
 });
 
-//Atualizar Leito
-router.put("/:id", (req, res) => {
+// Atualizar Leito
+router.put("/:id", async (req, res) => {
     try {
 
         const id = parseInt(req.params.id);
 
         const {
-            bedscol,
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
+            bed_code, 
             bed_status
         } = req.body;
 
         const result = await service.updateBed(id, {
-            bedscol,
             units_id,
             patients_id,
             rooms_id,
-            beds_code,
+            bed_code,
             bed_status
         });
 
@@ -118,8 +113,8 @@ router.put("/:id", (req, res) => {
     }
 });
 
-//Deletar Leito
-router.delete("/:id", (req, res) => {
+// Deletar Leito
+router.delete("/:id", async (req, res) => {
     try {
 
         const id = parseInt(req.params.id);
