@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
             units_id,
             patients_id,
             rooms_id,
-            bed_code, // Corrigido para singular e sem bedscol
+            bed_code, 
             bed_status
         } = req.body;
 
@@ -91,7 +91,7 @@ router.put("/:id", async (req, res) => {
             units_id,
             patients_id,
             rooms_id,
-            bed_code, // Corrigido para singular e sem bedscol
+            bed_code, 
             bed_status
         } = req.body;
 

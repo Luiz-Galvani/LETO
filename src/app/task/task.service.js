@@ -27,12 +27,12 @@ export class TasksService {
 
     async removeTask(id) {
         if (typeof id !== 'number' || !Number.isInteger(id)) {
-            throw new Error('O id fornecido deve ser um número inteiro válido')
+            throw new Error('O id deve ser um número inteiro válido')
         }
         const task = await this.repository.findOne(id)
 
         if (!task) {
-            throw new Error('Task não encontrado.')
+            throw new Error('Task não encontrada')
         }
 
         return await this.repository.remove(id)
@@ -40,7 +40,7 @@ export class TasksService {
 
     async updateTask(id, roomsId, bedsId, unitsId, usersId, statusId, description = null, acceptedAt = null, completedAt = null) {
         if (typeof id !== 'number' || !Number.isInteger(id)) {
-            throw new Error('O id fornecido deve ser um número inteiro válido')
+            throw new Error('O id deve ser um número inteiro válido')
         }
 
         this._validateIds(roomsId, bedsId, unitsId, usersId, statusId, description)
