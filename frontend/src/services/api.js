@@ -1,21 +1,20 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const api = axios.create({
-  baseURL: "http://localhost:3000",
-  headers: {
-    'Content-Type': 'application/json'
-  }
+// ATENÇÃO: Substitua 3000 pela porta exata que o seu servidor Node.js
+// mostra no terminal quando arranca ("Server running at http://localhost:PORT")
+const api = axios.create({
+  baseURL: 'http://localhost:5432'
 });
 
-export async function postJson(url, data) {
-  let payload = data;
-  if (typeof data === 'string') {
-    try {
-      payload = JSON.parse(data);
-    } catch (e) {
-      throw new Error('postJson recebeu uma string que não é JSON válido');
-    }
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
+  return config;
+});
 
-  return api.post(url, payload);
-}
+export const postJson = (url, data) => api.post(url, data);
+export const getJson = (url) => api.get(url);
+
+export default api;

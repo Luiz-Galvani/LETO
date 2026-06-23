@@ -31,19 +31,21 @@ function Login() {
     setError('')
 
     try {
-      const response = await postJson('/user/login', form)
+      const { data } = await postJson('/user/login', form)
 
       setMessage('Login realizado com sucesso!')
-      console.log(response)
+      console.log(data)
 
-      // CORRIGIDO: Removido o espaço em branco antes da barra
-      setTimeout(() => {
-        navigate('/dashboard') 
-      }, 1500)
+      if (data?.token) {
+        localStorage.setItem('token', data.token)
+      }
+
+      navigate('/monitoramento')
 
     } catch (err) {
       setError(
         err.response?.data?.error ||
+        err.message ||
         'Email ou senha inválidos'
       )
     }

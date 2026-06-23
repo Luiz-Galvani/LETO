@@ -6,6 +6,7 @@ import {
 
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
+import Monitoramento from "./pages/monitoramento"
 
 function App() {
   return (
@@ -19,6 +20,11 @@ function App() {
         <Route
           path="/dashboard"
           element={<Dashboard />}
+        />
+
+        <Route
+          path="/monitoramento"
+          element={<Monitoramento />}
         />
       </Routes>
     </BrowserRouter>

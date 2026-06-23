@@ -84,4 +84,17 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// Login USER
+router.post('/login', async (req, res) => {
+
+    try {
+        const { email, senha } = req.body
+        const result = await service.login(email, senha)
+        res.status(200).json(result)
+
+    } catch (error) {
+        res.status(401).json({error: error.message})
+    }
+})
+
 export default router
