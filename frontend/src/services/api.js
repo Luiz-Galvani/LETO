@@ -1,9 +1,8 @@
 import axios from 'axios';
-
 // ATENÇÃO: Substitua 3000 pela porta exata que o seu servidor Node.js
 // mostra no terminal quando arranca ("Server running at http://localhost:PORT")
 const api = axios.create({
-  baseURL: 'http://localhost:5432'
+  baseURL: `http://localhost:3000`
 });
 
 api.interceptors.request.use((config) => {

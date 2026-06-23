@@ -61,6 +61,7 @@ export class UserService {
 
     // Login USER
     async login(email, senha) {
+
         if (typeof email !== 'string' || email.trim().length === 0) {
             throw new Error('Email é obrigatório.')
         }
@@ -84,8 +85,8 @@ export class UserService {
         // Gerar token JWT
         const token = jwt.sign(
             { id: user.id, email: user.email },
-            process.env.JWT_SECRET || 'sua_chave_secreta_aqui',
-            { expiresIn: '24h' }
+            process.env.JWT_SECRET,
+            { expiresIn: '7D' }
         )
 
         // Retornar usuário sem a senha e com token

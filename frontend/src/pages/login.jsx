@@ -40,7 +40,7 @@ function Login() {
         localStorage.setItem('token', data.token)
       }
 
-      navigate('/monitoramento')
+      navigate('/dashboard')
 
     } catch (err) {
       setError(
