@@ -36,8 +36,9 @@ function Login() {
       setMessage('Login realizado com sucesso!')
       console.log(data)
 
-      if (data?.token) {
+      if (data.token) {
         localStorage.setItem('token', data.token)
+        localStorage.setItem('userName', data.name);
       }
 
       navigate('/dashboard')
