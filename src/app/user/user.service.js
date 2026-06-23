@@ -1,3 +1,6 @@
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
 export class UserService {
 
     constructor(usersRepository) {
@@ -43,14 +46,55 @@ export class UserService {
             throw new Error('Campo "senha" é obrigatório.')
         }
 
+        // Hash da senha
+        const senhaHash = await bcrypt.hash(senha, 10)
+
         const payload = {
             id: id ?? null,
             name: name.trim(),
             email: email.trim(),
-            senha
+            senha: senhaHash
         }
 
         return await this.repository.create(payload)
+    }
+
+    // Login USER
+    async login(email, senha) {
+        if (typeof email !== 'string' || email.trim().length === 0) {
+            throw new Error('Email é obrigatório.')
+        }
+
+        if (typeof senha !== 'string' || senha.trim().length === 0) {
+            throw new Error('Senha é obrigatória.')
+        }
+
+        // Buscar usuário por email
+        const user = await this.repository.findByEmail(email.trim())
+        if (!user) {
+            throw new Error('Email ou senha inválidos.')
+        }
+
+        // Comparar senha
+        const senhaValida = await bcrypt.compare(senha, user.senha)
+        if (!senhaValida) {
+            throw new Error('Email ou senha inválidos.')
+        }
+
+        // Gerar token JWT
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_SECRET || 'sua_chave_secreta_aqui',
+            { expiresIn: '24h' }
+        )
+
+        // Retornar usuário sem a senha e com token
+        return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            token
+        }
     }
 
     // Get USERS
