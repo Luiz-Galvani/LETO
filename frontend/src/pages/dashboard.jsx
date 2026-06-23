@@ -31,6 +31,9 @@ function Dashboard() {
           } else if (statusNormalizado === 'manutenção' || statusNormalizado === 'manutencao' || statusNormalizado === 'isolamento') {
             statusClass = 'q-red';
             iconType = 'alert';
+          } else if(statusNormalizado === 'ocupado') {
+            statusClass = 'q-blue';
+            iconType: 'occupied'
           }
 
           return {

@@ -21,6 +21,7 @@ app.use('/user', userController)
 app.use('/staff', staffController)
 app.use('/tasks', taskController)
 app.use('/beds', bedsController)
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 3001
+app.listen(3000, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}`)
 })
