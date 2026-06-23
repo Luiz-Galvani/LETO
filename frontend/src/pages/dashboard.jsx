@@ -10,6 +10,48 @@ function Dashboard() {
   const [listaQuartos, setListaQuartos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [horaAtual, setHoraAtual] = useState('');
+  const [dataAtual, setDataAtual] = useState('');
+  const [usuario, setUsuario] = useState({ nome: 'Usuário', iniciais: 'US' });
+
+  useEffect(() => {
+    const atualizarHorarioEData = () => {
+      const agora = new Date();
+      
+      // Formata a Hora
+      const horas = String(agora.getHours()).padStart(2, '0');
+      const minutos = String(agora.getMinutes()).padStart(2, '0');
+      setHoraAtual(`${horas}:${minutos}`);
+
+      // Formata a Data
+      const opcoesData = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+      let dataFormatada = agora.toLocaleDateString('pt-BR', opcoesData);
+      dataFormatada = dataFormatada.charAt(0).toUpperCase() + dataFormatada.slice(1);
+      setDataAtual(dataFormatada);
+    };
+
+    atualizarHorarioEData(); 
+    const intervalo = setInterval(atualizarHorarioEData, 1000); 
+
+    return () => clearInterval(intervalo); 
+  }, []);
+
+  useEffect(() => {
+    const nomeSalvo = localStorage.getItem('userName');
+    if (nomeSalvo) {
+      // Divide o nome para pegar a primeira letra do primeiro nome e do sobrenome
+      const partesDoNome = nomeSalvo.trim().split(' ');
+      const primeiraLetra = partesDoNome[0] ? partesDoNome[0][0] : '';
+      const ultimaLetra = partesDoNome.length > 1 ? partesDoNome[partesDoNome.length - 1][0] : '';
+      const iniciaisGeradas = (primeiraLetra + ultimaLetra).toUpperCase() || 'US';
+
+      setUsuario({
+        nome: nomeSalvo,
+        iniciais: iniciaisGeradas
+      });
+    }
+  }, []);
+
   // Efeito para buscar os dados no back-end
   useEffect(() => {
     async function buscarLeitos() {
@@ -97,12 +139,12 @@ function Dashboard() {
         <div className="header-left">
           <img src={logo} alt="LETO" className="dashboard-logo" />
           <div className="hospital-selector">
-            <span className="hospital-name">Hospital São Lucas</span>
+            <span className="hospital-name">Hospital XXXXXX</span>
           </div>
         </div>
         
         <div className="header-right">
-          <span className="header-clock-mini">13:24</span>
+          <span className="header-clock-mini">{horaAtual}</span>
           <div className="search-box">
             <svg className="search-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             <input type="text" placeholder="Buscar paciente, quarto..." />
@@ -112,8 +154,8 @@ function Dashboard() {
             <span className="notification-badge">4</span>
           </button>
           <div className="user-profile">
-            <div className="user-avatar">MS</div>
-            <span className="user-name">Dra. Marina</span>
+            <div className="user-avatar">{usuario.iniciais}</div>
+              <span className="user-name">{usuario.nome}</span>
             <button className="logout-inline-btn" onClick={() => navigate('/')}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
             </button>
@@ -150,11 +192,11 @@ function Dashboard() {
       <main className="dashboard-content">
         <section className="welcome-banner">
           <div className="welcome-text">
-            <span className="current-date">Domingo, 21 de Junho de 2026</span>
+            <span className="current-date">{dataAtual}</span>
             <h1>Dashboard</h1>
             <p className="welcome-sub">Bem-vindo ao Sistema LETO</p>
           </div>
-          <div className="big-digital-clock">13:24</div>
+          <div className="big-digital-clock">{horaAtual}</div>
         </section>
 
         <section className="metrics-grid">
