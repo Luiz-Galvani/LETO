@@ -26,13 +26,13 @@ function Dashboard() {
             statusClass = 'q-green';
             iconType = 'available';
           } else if (statusNormalizado === 'higienização' || statusNormalizado === 'higienizacao') {
-            statusClass = 'q-orange';
+            statusClass = 'q-blue';
             iconType = 'cleaning';
           } else if (statusNormalizado === 'manutenção' || statusNormalizado === 'manutencao' || statusNormalizado === 'isolamento') {
-            statusClass = 'q-red';
+            statusClass = 'q-orange';
             iconType = 'alert';
           } else if(statusNormalizado === 'ocupado') {
-            statusClass = 'q-blue';
+            statusClass = 'q-red';
             iconType: 'occupied'
           }
 
@@ -153,15 +153,24 @@ function Dashboard() {
           <div className="metric-card">
             <div className="card-info">
               <span>Leitos Ocupados</span>
-              <h3>{listaQuartos.filter(q => q.status === 'q-blue').length || 0}</h3>
+              <h3>{listaQuartos.filter(q => q.status === 'q-red').length || 0}</h3>
             </div>
-            <div className="metric-icon-box m-blue">
+            <div className="metric-icon-box m-red">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 4v16M2 11h18M2 17h20M6 8h4M22 13v7"/></svg>
             </div>
           </div>
           <div className="metric-card">
             <div className="card-info">
               <span>Limpezas em Andamento</span>
+              <h3>{listaQuartos.filter(q => q.status === 'q-blue').length || 0}</h3>
+            </div>
+            <div className="metric-icon-box m-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+          </div>
+          <div className="metric-card">
+            <div className="card-info">
+              <span>Manutenção</span>
               <h3>{listaQuartos.filter(q => q.status === 'q-orange').length || 0}</h3>
             </div>
             <div className="metric-icon-box m-orange">
